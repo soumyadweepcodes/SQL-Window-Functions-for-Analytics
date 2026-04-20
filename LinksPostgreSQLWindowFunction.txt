@@ -1,0 +1,14 @@
+PostgreSQl Documentation: 
+https://www.postgresql.org/docs/9.1/tutorial-window.html
+
+https://www.postgresql.org/docs/8.4/functions-window.html
+
+
+More Details: 
+https://www.postgresql.org/docs/9.1/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS
+
+https://www.postgresql.org/docs/9.1/functions-window.html
+
+https://www.postgresql.org/docs/9.1/queries-table-expressions.html#QUERIES-WINDOW
+
+https://www.postgresql.org/docs/9.1/sql-select.html

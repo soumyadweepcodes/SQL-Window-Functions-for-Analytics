@@ -1,0 +1,125 @@
+#############################
+-- Task One: Window Functions - Refresher
+-- In this task, we will refresh our understanding
+-- of using window functions in SQL
+#############################
+-- 1.1: Retrieve a list of employee_id, first_name, hire_date, 
+-- and department of all employees ordered by the hire date
+select employee_id, first_name, hire_date, department,
+row_number() over (order by hire_date) as Row_Num
+from employees;
+
+-- 1.2: Retrieve the employee_id, first_name, 
+-- hire_date of employees for different departments
+
+select employee_id, first_name, hire_date,department,
+row_number() over ( partition by department 
+                    order by hire_date) as emp_num
+from employees;
+
+
+#############################
+-- Task Two: Ranking
+-- In this task, we will learn how to rank the
+-- rows of a result set
+#############################
+
+-- 2.1: Let's use the RANK() function
+
+
+-- Exercise 2.1: Retrieve the hire_date. Return details of
+-- employees hired on or before 31st Dec, 2005 and are in
+-- First Aid, Movies and Computers departments 
+
+select employee_id, first_name, email, hire_date, department, salary,
+rank() over (partition by department 
+             order by hire_date) as rank_n
+from employees
+where hire_date <= '2005-12-31' and department in ('First Aid','Movies','Computers');
+
+
+
+-- This returns how many employees are in each department
+select department, count(*) as dept_count
+from employees 
+group by department
+order by dept_count desc;
+
+-- 2.2: Return the fifth ranked salary for each department
+select * 
+from 
+(select first_name, department, salary,
+rank() over (partition by department order by salary) as ranked_salary
+from employees) as e
+where e.ranked_salary=5;
+
+
+--2.3: Create a common table expression to retrieve the customer_id, 
+-- and how many times the customer has purchased from the mall 
+with purchase_count as(
+select "Customer ID", count(Sales) as purchase from sales group by "Customer ID" order by purchase
+)
+--select * from purchase order by purchase_count desc;
+
+-- 2.4: Understand the difference between ROW_NUMBER, RANK, DENSE_RANK
+SELECT "Customer ID", purchase,
+ROW_NUMBER() OVER (ORDER BY purchase DESC) AS Row_N,
+RANK() OVER (ORDER BY purchase DESC) AS Rank_N,
+DENSE_RANK() OVER (ORDER BY purchase DESC) AS Dense_Rank_N
+FROM purchase_count
+ORDER BY purchase DESC;
+
+#############################
+-- Task Three: Paging: NTILE()
+-- In this task, we will learn how break/page
+-- the result set into groups
+#############################
+
+-- 3.1: Group the employees table into five groups
+-- based on the order of their salaries
+select first_name, salary,
+ntile(5) over (order by salary desc)
+from employees;
+
+--create 3 different groups
+select first_name, salary,
+ntile(4) over (order by salary desc) as group_1,
+ntile(50) over (order by salary desc) as group_2,
+ntile(100) over (order by salary desc) as group_3
+from employees;
+
+-- 3.2: Group the employees table into five groups for 
+-- each department based on the order of their salaries
+select first_name, email, department, salary,
+ntile(5) over (partition by department order by salary)
+from employees;
+
+-- Create a CTE that returns details of an employee
+-- and group the employees into five groups
+-- based on the order of their salaries
+with employee_details as( 
+select first_name, email, department, salary,
+ntile(5) over (order by salary desc) as rank_of_salary
+from employees
+)
+--select * from employee_details;
+
+-- 3.3: Find the average salary for each group of employees
+select rank_of_salary, avg(salary) as avg_salary
+from employee_details
+group by rank_of_salary
+order by rank_of_salary;
+
+#############################
+-- Task Four: Aggregate Window Functions - Part One
+-- In this task, we will learn how to use
+-- aggregate window functions in SQL
+#############################
+
+
+
+
+
+
+
+
