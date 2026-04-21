@@ -115,11 +115,46 @@ order by rank_of_salary;
 -- In this task, we will learn how to use
 -- aggregate window functions in SQL
 #############################
+-- 4.1: This returns how many employees are in each department
+select department, count(*) as employee_count
+from employees
+group by department
+order by department;
+
+-- 4.2: Retrieve the first names, department and 
+-- number of employees working in that department
+select first_name,department,(select count(*) from employees e1 where e1.department=e2.department group by department)
+from employees e2
+group by first_name, department
+order by department;
+
+-- The solution  (Use window window function to make the query easy anf efficient)
+  
+select 
+           first_name,
+           department,
+           count(*) over (partition by department) as dept_count
+from employees
+order by department;
+     
+
+-- 4.3: Total Salary for all employees
+select first_name, department,
+sum(salary) over (order by hire_date) as total_salary
+from employees;
 
 
+-- 4.4: Total Salary for each department
+select * 
+from (select department,
+       sum(salary) over (partition by department) as total_salary,
+       row_number() over (partition by department order by department) as row_n
+from employees) a
+where row_n = 1;
 
-
-
-
-
-
+-- Exercise 4.1: Total Salary for each department and
+-- order by the hire date. Call the new column running_total
+SELECT first_name, hire_date, department, salary,
+sum(salary) OVER(partition by department
+				 order by hire_date) AS running_total
+FROM employees;
