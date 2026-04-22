@@ -158,3 +158,58 @@ SELECT first_name, hire_date, department, salary,
 sum(salary) OVER(partition by department
 				 order by hire_date) AS running_total
 FROM employees;
+
+
+#############################
+-- Task Five: Aggregate Window Functions - Part Two
+-- In this task, we will learn how to use
+-- aggregate window functions in SQL
+#############################
+
+-- Retrieve the different region ids
+select distinct region_id from employees;
+
+-- 5.1: Retrieve the first names, department and 
+-- number of employees working in that department and region
+
+select first_name, department,
+count(*) over (partition by department) dept_count,
+region_id,
+count(*) over (partition by region_id) region_count
+from employees;
+
+
+-- Exercise 5.1: Retrieve the first names, department and 
+-- number of employees working in that department and in region 2
+select first_name, department,
+count(*) over (partition by department) dept_count
+from employees
+where region_id=2;
+
+
+-- Create a common table expression to retrieve the customer_id, 
+-- ship_mode, and how many times the customer has purchased from the mall
+
+with purchase_count as(
+select "Customer ID","Ship Mode",
+count(*) as purchase
+from sales
+group by "Customer ID","Ship Mode"
+order by "purchase" desc
+)
+
+-- Exercise 5.2: Calculate the cumulative sum of customers purchase
+-- for the different ship mode
+select "Customer ID","Ship Mode",purchase,
+sum(purchase) over (partition by "Ship Mode"
+                    order by "Customer ID" asc) total_purchase
+from purchase_count;
+
+
+
+
+
+
+
+
+
