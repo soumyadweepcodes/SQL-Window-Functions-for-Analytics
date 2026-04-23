@@ -205,11 +205,76 @@ sum(purchase) over (partition by "Ship Mode"
                     order by "Customer ID" asc) total_purchase
 from purchase_count;
 
+#############################
+-- Task Six: Window Frames - Part One
+-- In this task, we will learn how to
+-- order data in window frames in the result set
+#############################
+-- 6.1: Calculate the running total of salary
 
+-- Retrieve the first_name, hire_date, salary
+-- of all employees ordered by the hire date
+select first_name, hire_date, salary
+from employees
+order by hire_date;
 
+-- The solution
+select first_name, hire_date, salary,
+sum(salary) over (order by hire_date
+                  range between unbounded preceding and current row) as running_total
+from employees;
 
+-- 6.2: Add the current row and previous row
 
+select first_name, hire_date, salary,
+sum(salary) over (order by hire_date
+                  rows between 1 preceding and current row) as running_total
+from employees;
 
+-- 6.3: Find the running average
+select first_name, hire_date, salary,
+avg(salary) over (order by hire_date
+                  rows between unbounded preceding and current row) running_avg
+from employees;
 
+-- What do you think the result of the query will be?
+SELECT first_name, hire_date, salary,
+SUM(salary) OVER(ORDER BY hire_date 
+				 ROWS BETWEEN
+				 3 PRECEDING AND CURRENT ROW) AS running_total
+FROM employees;
+--Answer: The sum of salary of current row and preveious three rows based on the hire_date order.
 
+#############################
+-- Task Seven: Window Frames - Part Two
+-- In this task, we will learn how to
+-- order data in window frames in the result set
+#############################
+-- 7.1: Review of the FIRST_VALUE() function
+SELECT department, division,
+FIRST_VALUE(department) OVER(ORDER BY department ASC) first_department
+FROM departments;
 
+-- 7.2: Retrieve the last department in the departments table
+SELECT department, division,
+FIRST_VALUE(department) OVER(ORDER BY department ASC) first_department,
+last_value(department) over(order by department asc
+                            range between unbounded preceding and unbounded following)                           
+FROM departments;
+
+-- Create a common table expression to retrieve the customer_id, 
+-- ship_mode, and how many times the customer has purchased from the mall
+
+WITH purchase_count AS (
+SELECT "Customer ID", COUNT(sales) AS purchase
+FROM sales
+GROUP BY "Customer ID"
+ORDER BY purchase DESC
+)
+-- What do you think this will return?
+SELECT "Customer ID", purchase, 
+MAX(purchase) OVER(ORDER BY "Customer ID" ASC) AS max_of_sales,
+MAX(purchase) OVER(ORDER BY "Customer ID" ASC
+				  ROWS BETWEEN
+				  CURRENT ROW AND 1 FOLLOWING) AS next_max_of_sales
+FROM purchase_count;
