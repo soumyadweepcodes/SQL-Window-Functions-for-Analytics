@@ -278,3 +278,58 @@ MAX(purchase) OVER(ORDER BY "Customer ID" ASC
 				  ROWS BETWEEN
 				  CURRENT ROW AND 1 FOLLOWING) AS next_max_of_sales
 FROM purchase_count;
+
+
+#############################
+-- Task Eight: GROUPING SETS, ROLLUP() & CUBE()
+-- In this task, we will learn how the GROUPING SETS, 
+-- ROLLUP, and CUBE clauses work in SQL
+#############################
+-- 8.1: Find the sum of the quantity for different ship modes
+select "Ship Mode", sum("Quantity")
+from sales
+group by "Ship Mode";
+
+-- 8.2: Find the sum of the quantity for different categories
+select  "Category", sum("Quantity")
+from sales
+group by "Category";
+
+-- 8.3: Find the sum of the quantity for different subcategories
+
+select  "Sub-Category", sum("Quantity")
+from sales
+group by "Sub-Category";
+
+-- 8.4: Use the GROUPING SETS clause
+
+select "Ship Mode", "Category","Sub-Category",sum("Quantity")
+from sales
+group by grouping sets ("Ship Mode", "Category","Sub-Category");
+
+--8.5: Use the ROLLUP clause
+
+select "Ship Mode", "Category","Sub-Category",sum("Quantity")
+from sales
+group by rollup ("Ship Mode", "Category","Sub-Category");
+
+--8.6: Use the CUBE clause
+select "Ship Mode", "Category","Sub-Category",sum("Quantity")
+from sales
+group by cube ("Ship Mode", "Category","Sub-Category");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
