@@ -130,7 +130,7 @@ This is a personal portfolio project, but suggestions and improvements are welco
 
 ## 📬 Contact
 
-* GitHub: [https://github.com/soumyadweepcodes](GitHub Link)
+* GitHub: [https://github.com/soumyadweepcodes](https://github.com/soumyadweepcodes/SQL-Projects)
 * LinkedIn: 
 
 ---
