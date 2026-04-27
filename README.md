@@ -130,7 +130,7 @@ This is a personal portfolio project, but suggestions and improvements are welco
 
 ## 📬 Contact
 
-* GitHub: [https://github.com/your-username](https://github.com/soumyadweepcodes)
+* GitHub: [https://github.com/soumyadweepcodes](GitHub Link)
 * LinkedIn: 
 
 ---
