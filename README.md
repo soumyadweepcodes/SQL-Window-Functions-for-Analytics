@@ -1,78 +1,138 @@
-# SQL-Window-Functions-for-Analytics
+# 🚀 SQL Projects Portfolio
 
-## Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/SQL-Advanced-blue?style=for-the-badge&logo=postgresql" />
+  <img src="https://img.shields.io/badge/Focus-Data%20Analytics-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Level-Production%20Ready-orange?style=for-the-badge" />
+</p>
 
-- Understand how SQL window functions work and how to use them  
-- Manipulate data in tables using SQL SELECT statements together with window functions  
-- Use different SQL windows to get database insights  
+---
 
+## 📌 Overview
 
-## Project Structure
+This repository is a curated collection of **real-world SQL projects** focused on:
 
-The hands-on project on SQL Window Functions for Analytics is divided into the following tasks:
+* Data Analysis
+* Business Intelligence
+* Query Optimization
+* Advanced SQL (Window Functions, CTEs, Aggregations)
 
-### Task 1: Getting Started
+Each project is structured to reflect **industry-level practices**, including clean query design, documentation, and dataset organization.
 
-- Overview of the project  
-- A brief introduction to the Rhyme platform  
-- What are window functions in SQL?  
-- Retrieve all the data in the projectdb database  
+---
 
-### Task 2: Window Functions - Refresher
+## 🧠 Skills Demonstrated
 
-- Retrieve a list of employee_id, first_name, hire_date, and department of all employees ordered by the hire date  
-- Retrieve the employee_id, first_name, hire_date of employees for different departments  
+* Advanced SQL Querying
+* Window Functions (RANK, DENSE_RANK, RANK etc.)
+* Common Table Expressions (CTEs)
+* Data Cleaning & Transformation
+* Analytical Problem Solving
+* PostgreSQL
 
-### Task 3: Ranking
+---
 
-- Recall the use of ROW_NUMBER()  
-- Use the RANK() function  
-- Exercise 3.1: Retrieve the hire_date. Return details of employees hired on or before 31st Dec, 2005 and are in First Aid, Movies and Computers departments  
-- Return the fifth-ranked salary for each department  
-- Create a Common Table Expression (CTE) to retrieve the customer_id and the number of times the customer has purchased from the mall  
-- Understand the difference between ROW_NUMBER(), RANK(), and DENSE_RANK()  
+## 📂 Project Structure
 
-### Task 4: Paging: NTILE()
+```
+SQL-Projects/
+│
+├── window-functions-analytics/
+│   ├── data/
+│   ├── sql/
+│   ├── docs/
+│   └── README.md
+│
+└── README.md
+```
 
-- Group the employees table into five groups based on the order of their salaries  
-- Group the employees table into five groups for each department based on the order of their salaries  
-- Create a CTE that returns details of employees and groups them into five salary-based groups  
-- Find the average salary for each group of employees  
+---
 
-### Task 5: Aggregate Window Functions - Part One
+## 📊 Projects
 
-- Retrieve how many employees are in each department  
-- Retrieve the first names, departments, and number of employees working in each department  
-- Calculate total salary for all employees  
-- Calculate total salary for each department  
-- Exercise 5.1: Calculate total salary for each department ordered by hire date (column name: running_total)  
+### 🔹 1. Window Functions for Analytics
 
-### Task 6: Aggregate Window Functions - Part Two
+📁 `window-functions-analytics/`
 
-- Retrieve the different region IDs  
-- Retrieve the first names, departments, and number of employees working in each department and region  
-- Exercise 6.1: Retrieve the first names, departments, and number of employees working in department and region 2  
-- Create a CTE to retrieve the customer_id, ship_mode, and purchase count  
-- Exercise 6.2: Calculate the cumulative sum of customer purchases for different ship modes  
+**Concepts Covered:**
 
-### Task 7: Window Frames - Part One
+* ROW_NUMBER()
+* RANK() vs DENSE_RANK()
+* Running Totals
+* Partitioning & Framing
 
-- Calculate the running total of salary  
-- Add the current row and previous row values  
-- Find the running average  
+**Dataset:**
 
-### Task 8: Window Frames - Part Two
+* Sales Data
+* Customer Data
 
-- Review the FIRST_VALUE() function  
-- Retrieve the last department in the departments table  
-- Create a CTE to retrieve the customer_id, ship_mode, and purchase count  
+**Key Insights:**
 
-### Task 9: GROUPING SETS(), ROLLUP(), & CUBE()
+* Customer purchase trends
+* Ranking high-value customers
+* Time-based sales analysis
 
-- Find the sum of quantity for different ship modes  
-- Find the sum of quantity for different categories  
-- Find the sum of quantity for different subcategories  
-- Use the GROUPING SETS() clause  
-- Use the ROLLUP() clause  
-- Use the CUBE() clause  
-- Wrap up the project  
+👉 [View Project](./window-functions-analytics)
+
+---
+---
+
+## 📸 Visual Preview
+
+> Add query outputs, charts, or dashboards here (recommended tools: Excel, Power BI, or Python matplotlib)
+
+```
+Example:
+[ Sales Trend Chart ]
+[ Customer Ranking Table ]
+```
+
+---
+
+## ⚙️ How to Use
+
+1. Clone the repository:
+
+```bash
+https://github.com/soumyadweepcodes/SQL-Window-Functions-for-Analytics.git
+cd SQL-Projects
+```
+
+2. Open SQL files in PostgreSQL / any SQL editor
+
+3. Run queries on provided datasets
+
+---
+
+## 🧩 Tools & Technologies
+
+* PostgreSQL
+* SQL
+* CSV Datasets
+* (Optional) Python / Pandas for preprocessing
+
+---
+
+## 📈 Future Improvements
+
+* Add real-world datasets (large-scale)
+* Integrate dashboards (Power BI / Tableau)
+* Add performance optimization benchmarks
+* Include stored procedures & indexing strategies
+
+---
+
+## 🤝 Contribution
+
+This is a personal portfolio project, but suggestions and improvements are welcome.
+
+---
+
+## 📬 Contact
+
+* GitHub: [https://github.com/your-username](https://github.com/soumyadweepcodes)
+* LinkedIn: 
+
+---
+
+<p align="center">⭐ If you found this useful, consider starring the repo!</p>
